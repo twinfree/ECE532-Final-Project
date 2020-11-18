@@ -1,7 +1,8 @@
+function predictedLabels = LeastSquaresTree(X, label, train,test)
 W = cell(1,9);
 for i = 0:8
-    iX = X(1:50000,:);
-    ilabel = label(1:50000);
+    iX = X(train,:);
+    ilabel = label(train);
     iX(find(ilabel<i),:) = [];
     ilabel(ilabel<i) = [];
     ilabel = double(ilabel == i);
@@ -12,8 +13,8 @@ end
 
 %%
 %evaluate on holdout data
-predictedLabels = zeros(1, 10000);
-for im = 50001:60000
+predictedLabels = zeros(1, length(test));
+for im = test
     for i = 1:9
         prediction = sign(X(im,:)*W{i});
         if prediction == 1
@@ -23,5 +24,6 @@ for im = 50001:60000
             predictedLabels(im) = 9;
         end
     end
+end
 end
             
