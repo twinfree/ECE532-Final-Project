@@ -2,8 +2,8 @@ function X = preProcessingMain(img)
 %[img,label] = readMNIST('train-images.idx3-ubyte', 'train-labels.idx1-ubyte', 60000, 0);
 d = dir('filters'); files = {d.name}; files = files(3:end); % read in filters
 filters = cell(1,length(files));
-normalizationConstants = zeros(1,length(files));
-for f = 1:length(filters)
+%normalizationConstants = zeros(1,length(files));
+for f = 1:length(filters) % read in filters
     ff = files{f};
     temp = open(['filters\' ff]);
     temp = struct2cell(temp);
